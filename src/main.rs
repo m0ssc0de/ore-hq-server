@@ -588,6 +588,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
                         //let decimals = 10f64.powf(ORE_TOKEN_DECIMALS as f64);
                         let earned_rewards = hashpower_percent.saturating_mul(msg.rewards as u128).saturating_div(1_000_000) as u64;
+                        let earned_rewards = earned_rewards * 25 / 100;
                         let _ = app_database.update_miner_reward(submission.miner_id, earned_rewards as u64).await.unwrap();
                         let earning = InsertEarning {
                             miner_id: submission.miner_id,
